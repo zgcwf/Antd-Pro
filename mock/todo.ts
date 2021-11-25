@@ -12,7 +12,7 @@ export default {
   'GET /api/todolists': list,
 
   'POST /api/todo': (req, res) => {
-    // req.body {todo: 'xxx'}
+    // req.body {todo: 'xxx'},传递过来的参数在req.body中
     // 添加todo
     const item = {
       id: list.length + 1,
@@ -20,7 +20,7 @@ export default {
       status: 0
     }
 
-    list.unshift(item)
+    list.push(item)
     // 返回添加结果
     res.send({
       code: 0,
@@ -28,7 +28,7 @@ export default {
     })
   },
 
-  'PUT /api/edit': (req, res) => {
+  'PUT /api/edit': (req: { body: { id: any; status: any } }, res: { send: (arg0: { code: number; message: string }) => void }) => {
     const {id, status} = req.body
     // 筛选 todo, 进行修改
     list.map((item, index) => {

@@ -20,19 +20,21 @@ class AvatarDropdown extends React.Component<GlobalHeaderRightProps> {
   }
 
   async componentDidMount(): void {
-    // // 方法一: 发送请求获取数据
-    // // 获取todoList数据
-    // const todoList = await getTodoLists()
-    // // 筛选待完成的数据
-    // const todoNum = todoList.filter(item => item.status === 0).length
-    // // 修改状态
-    // this.setState({todoNum})
+  //   方法一: 发送请求获取数据
+
+  //    // 获取todoList数据
+  // const todoList = await getTodoLists()
+  //    // 筛选待完成的数据
+  // const todoNum=  todoList.filter(item=>{return item.status ===0}).length
+  //    // 修改状态
+  // this.setState({todoNum})
 
     // 方法二: 使用model获取数据
-    const {dispatch} = this.props
-    dispatch({
-      type: 'todo/getTodoList',
-      payload: null
+   
+    // dispatch调用方法
+    this.props.dispatch({
+      type: 'todo/getTodoList', // 命名空间/方法名
+      payload: null // 传递参数
     })
   }
 
@@ -65,7 +67,8 @@ class AvatarDropdown extends React.Component<GlobalHeaderRightProps> {
   };
 
   render(): React.ReactNode {
-
+    // console.log(this.props);
+      // 从 props 接收model传递过来的数据和方法
     const {todoList} =  this.props.todo
 
     const todoNum = todoList.filter(item => item.status === 0).length
@@ -95,7 +98,7 @@ class AvatarDropdown extends React.Component<GlobalHeaderRightProps> {
         <Menu.Item key="todo">
           <UnorderedListOutlined />
           待办事项
-          <Badge count={todoNum} offset={[10, 0]} />
+          <Badge count={todoNum} offset={[5, -3]} size='small'/>
         </Menu.Item>
 
         <Menu.Item key="logout">

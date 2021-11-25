@@ -8,7 +8,7 @@ export default {
   },
 
   effects: {
-    *getTodoList(_, {call, put}) {
+    *getTodoList(_: any, {call, put}: any) {
       // 调用方法获取数据
       const resData = yield call(getTodoLists)
       yield put({
@@ -19,7 +19,7 @@ export default {
   },
 
   reducers: {
-    setTodoList(state, action) {
+    setTodoList(state: any, action: { payload: any; }) {
       return {
         ...state,
         todoList: action.payload
